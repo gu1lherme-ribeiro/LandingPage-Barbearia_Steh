@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Barbearia Steh</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <header class="header">
@@ -21,7 +26,7 @@
           <i class="fas fa-bars"></i>
         </div>
         <div class="header-cta">
-          <a href="agendamento" class="btn btn-primary">Agende seu horário</a>
+          <a href="#agendamento" class="btn btn-primary">Agende seu horário</a>
         </div>
       </div>
     </header>
@@ -45,7 +50,7 @@
             <h3>Corte masculino</h3>
             <p>Cortes mordernos e tradicionais para todos os estilos.</p>
           </div>
-          <div class="service-icon">
+          <div class="service-card">
             <div class="service-icon">
               <span class="icon-razor" aria-hidden="true"></span>
             </div>
@@ -53,7 +58,9 @@
             <p>Tratamento completo para barba e sobrancelha.</p>
           </div>
           <div class="service-card">
-            <div class="service-icon"></div>
+            <div class="service-icon">
+              <span class="icon-razor" aria-hidden="true"></span>
+            </div>
             <h3>Corte Infantil</h3>
             <p>Ambiente amigável para cortes especiais para crianças.</p>
           </div>
@@ -105,107 +112,138 @@
             </div>
           </div>
         </div>
-        <!-- testimonials section -->
-        <section id="depoimentos" class="testimonials">
-          <div class="section">
-            <h2 class="section-title">Avaliações dos nossos clientes</h2>
-            <div class="testimonials-grid">
-              <div class="testimonials-card">
-                <div class="testimonial-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <p>
-                  "Ótimo lugar para reencontrar os amigos e ter uma prosa super
-                  agradável e claro saindo com estilo depois de aquele talento
-                  com os melhores barbeiros(a)"
-                </p>
-                <p class="testimonial-author">- Daniel Neves</p>
-                 <a id="testimonial-link" class="btn btn-avaliation"
-                  href="https://share.google/B1qQQdWp7Xzpuilyt"
-                  target="_blank"
-                > Clique para ver a avaliação completa
-                </a>
-              </div>
-              <div class="testimonials-card">
-                <div class="testimonial-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <p>
-                  "Lugar ótimo pra corta cabelo...povo simpático ..shoow de bola
-                  lá nuuu🥰😊☺️"
-                </p>
-                 <p class="testimonial-author">- Hudson Souza</p>
-                <a id="testimonial-link" class="btn btn-avaliation"
-                  href="https://share.google/ocJFld3dxZ5mTGAyU"
-                  target="_blank"
-                > Clique para ver a avaliação completa
-                </a>
-              </div>
-              <div class="testimonials-card">
-                <div class="testimonial-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <p>
-                 "Toop de mais,trata os clientes muito bom, Sem comparação com as outras..."
-                </p>
-                 <p class="testimonial-author">- Hitalo rafael</p>
-                <a id="testimonial-link" class="btn btn-avaliation"
-                  href="https://share.google/6IJBOaQkKnfS6FjK8"
-                  target="_blank"
-                > Clique para ver a avaliação completa
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!--booking section-->
-        <section id="agendamento" class ="booking">
-          <div class="container">
-            <div class="booking-content">
-              <h2 clh2s="section-title">Agende seu horário agora mesmo!</h2>
-              <p>Agende seu horário de forma simples e prática atráves do nosso link! 
-              </p>
-              <p>Consulte horários disponiveis.</p>
-              <a href="https://online.maapp.com.br/Barbeariadasteh" class="btn btn-booking" target="_blank">Agendar com um clique</a>
-            </div>
-          </div>
-        </section>
-        <!--footer-->
-        <section id="contato" class="footer">
-          <div class="footer-content">
-            <div class="footer-info">
-              <h3>Barbearia Steh</h3>
-              <p>
-                <I class="fas fa-map-marker-alt"></I> Rua Mário Teixeira, Nº 283, centro, Juatuba-MG
-              </p>
-              <P>
-                <I class="fas fa-clock"></I> Terça-Sexta: 9h às 19h | Sábado: 9h às 16h 
-              </P>
-              <p>
-                <I class="fas fa-phone"></I> (31) 99398-1392
-              </p>
-            </div>
-            <div class="footer-social">
-              <h3>Siga-nos</h3>
-              <div class="soscial-icons">
-                <a href="https://www.instagram.com/barbeariasteh/" target="_blank"><i class="fab fa-instagram"></i>link para instagram Barbearia Steh</a>
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
+      <!-- testimonials section -->
+      <section id="depoimentos" class="testimonials">
+        <div class="section">
+          <h2 class="section-title">Avaliações dos nossos clientes</h2>
+          <div class="testimonials-grid">
+            <div class="testimonials-card">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p>
+                "Ótimo lugar para reencontrar os amigos e ter uma prosa super
+                agradável e claro saindo com estilo depois de aquele talento com
+                os melhores barbeiros(a)"
+              </p>
+              <p class="testimonial-author">- Daniel Neves</p>
+              <a
+                id="testimonial-link"
+                class="btn btn-avaliation"
+                href="https://share.google/B1qQQdWp7Xzpuilyt"
+                target="_blank"
+              >
+                Clique para ver a avaliação completa
+              </a>
+            </div>
+            <div class="testimonials-card">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p>
+                "Lugar ótimo pra corta cabelo...povo simpático ..shoow de bola
+                lá nuuu🥰😊☺️"
+              </p>
+              <p class="testimonial-author">- Hudson Souza</p>
+              <a
+                id="testimonial-link"
+                class="btn btn-avaliation"
+                href="https://share.google/ocJFld3dxZ5mTGAyU"
+                target="_blank"
+              >
+                Clique para ver a avaliação completa
+              </a>
+            </div>
+            <div class="testimonials-card">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p>
+                "Toop de mais,trata os clientes muito bom, Sem comparação com as
+                outras..."
+              </p>
+              <p class="testimonial-author">- Hitalo rafael</p>
+              <a
+                id="testimonial-link"
+                class="btn btn-avaliation"
+                href="https://share.google/6IJBOaQkKnfS6FjK8"
+                target="_blank"
+              >
+                Clique para ver a avaliação completa
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--booking section-->
+      <section id="agendamento" class="booking">
+        <div class="container">
+          <div class="booking-content">
+            <h2 clh2s="section-title">Agende seu horário agora mesmo!</h2>
+            <p>
+              Agende seu horário de forma simples e prática atráves do nosso
+              link!
+            </p>
+            <p>Consulte horários disponiveis.</p>
+            <a
+              href="https://online.maapp.com.br/Barbeariadasteh"
+              class="btn btn-booking"
+              target="_blank"
+              >Agendar com um clique</a
+            >
+          </div>
+        </div>
+      </section>
+      <!--footer-->
+      <footer id="contato" class="footer">
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3>Barbearia Steh</h3>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Rua Mário Teixeira, Nº 283,
+              centro, Juatuba-MG
+            </p>
+            <p>
+              <i class="fas fa-clock"></i> Terça-Sexta: 9h às 19h | Sábado: 9h
+              às 16h
+            </p>
+            <p><i class="fas fa-phone"></i> (31) 99398-1392</p>
+          </div>
+          <div class="footer-social">
+            <h3>Siga-nos</h3>
+            <div class="soscial-icons">
+              <a
+                href="https://www.instagram.com/barbearia_da_steh?igsh=MWloeXh0dXJtMWpocg=="
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/share/1hJHv3pegN/?mibextid=wwXIfr"
+                target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a
+                href="https://web.whatsapp.com/send?phone=5531993981392"
+                target="_blank"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </section>
   </body>
 </html>
