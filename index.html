@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Barbearia Steh</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
   </head>
   <body>
+    <div id="scroll-progress"></div>
     <header class="header">
       <div class="logo"><h1>Barbearia Steh</h1></div>
       <div class="menu">
@@ -41,7 +42,7 @@
     <!-- Service Section-->
     <section id="serviços" class="services">
       <div class="conteiner">
-        <h2 class="section-title">Nossos Serviços</h2>
+        <h2 class="section-title" id="title-service">Nossos Serviços</h2>
         <div class="services-grid">
           <div class="service-card">
             <div class="service-icon">
@@ -59,24 +60,30 @@
           </div>
           <div class="service-card">
             <div class="service-icon">
-              <span class="icon-razor" aria-hidden="true"></span>
+              <i class="fas fa-child"></i>
             </div>
             <h3>Corte Infantil</h3>
             <p>Ambiente amigável para cortes especiais para crianças.</p>
           </div>
           <div class="service-card">
-            <div class="service-icon"></div>
+            <div class="service-icon">
+              <i class="fas fa-gem"></i>
+            </div>
             <h3>Platinado</h3>
             <p>Tratamento especializado para platinar seu cabelo.</p>
           </div>
           <div class="service-card">
-            <div class="service-icon"></div>
+            <div class="service-icon">
+              <i class="fas fa-ruler-horizontal"></i>
+            </div>
             <h3>Reflexo Alinhado</h3>
             <p>Especialização em tintura para o reflexo alinhado.</p>
           </div>
           <div class="service-card">
-            <div class="service-icon"></div>
-            <h3>Pacotes Epesciais</h3>
+            <div class="service-icon">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <h3>Pacotes Especiais</h3>
             <p>
               Oferecemos pacotes especiais para atender às necessidades
               individuais de nossos clientes.
@@ -89,7 +96,7 @@
         <div class="container">
           <div class="about-content">
             <div class="about-text">
-              <h2 class="section-title">Sobre Nós</h2>
+              <h2 class="section-title" id="title-about">Sobre Nós</h2>
               <p>
                 ""A Barbearia Steh é uma instituição comprometida com a
                 excelência na barbearia. Fundada em 2019, nossa barbearia tem
