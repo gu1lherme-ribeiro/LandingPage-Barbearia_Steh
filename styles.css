@@ -1,5 +1,8 @@
-/* Base Styles */
+/*====================
+ * 1. VARIÁVEIS E RESET
+ *====================*/
 
+/* Variáveis de cores, fontes e efeitos */
 :root {
     --primary-color: #d4af37;
     --primary-color-light: #f5d76e;
@@ -20,16 +23,7 @@
     --shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.7);
 }
 
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary-color-dark), var(--primary-color));
-    z-index: 2000;
-}
-
+/* Reset e estilos base */
 * {
     margin: 0;
     padding: 0;
@@ -47,13 +41,6 @@ body {
     background-color: var(--color-light);
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -69,12 +56,36 @@ img {
     display: block;
 }
 
+/*====================
+ * 2. ELEMENTOS COMUNS
+ *====================*/
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Barra de progresso de rolagem */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color-dark), var(--primary-color));
+    z-index: 2000;
+}
+
+/* Títulos de seção */
 .section-title {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
-    color: var(--color-dark)
+    color: var(--color-dark);
 }
 
 .section-title::after {
@@ -88,6 +99,7 @@ img {
     background-color: var(--primary-color);
 }
 
+/* Botões */
 .btn {
     display: inline-block;
     padding: 12px 28px;
@@ -95,7 +107,7 @@ img {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: var(--trasition);
+    transition: var(--transition);
     cursor: pointer;
 }
 
@@ -115,7 +127,34 @@ img {
 .btn-large {
     padding: 15px 35px;
     font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
 }
+
+
+/* Botão genérico */
+button {
+    border: none;
+    border-radius: 5px;
+    transition: var(--transition);
+    background-color: var(--primary-color);
+    color: var(--color-dark);
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-dark);
+    color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/*====================
+ * 3. HEADER E NAVEGAÇÃO
+ *====================*/
 
 .header {
     position: fixed;
@@ -124,7 +163,7 @@ img {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.95);
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 2px 20px var(--color-dark);
     padding: 10px 0;
 }
 
@@ -197,10 +236,13 @@ img {
     right: 0;
 }
 
-/*hero section*/
+/*====================
+ * 4. SEÇÃO HERO
+ *====================*/
+
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/Hero.jpg') no-repeat center/cover;
+    background: linear-gradient(var(--color-dark), rgba(0, 0, 0, 0.7)), url('./assets/Hero.jpg') no-repeat center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,32 +274,48 @@ img {
     animation-fill-mode: both;
 }
 
-/*Services Section*/
+/*====================
+ * 5. SEÇÃO SERVIÇOS
+ *====================*/
 
-.section-title{
+/* Sobrescreve o título da seção para cores claras */
+.section-title {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
-    color: var(--color-light)
+    color: var(--color-light);
 }
-
+.service-title {
+    font-size: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    color: var(--color-light);
+}
+.service-description {
+    font-size: 1.2rem;
+    color: var(--color-light);
+    animation: fadeInUp 1s ease 0.3s;
+    animation-fill-mode: both;
+}
 .services {
     padding: 100px 0;
     background-color: var(--color-dark-tertiary);
 }
 
-.services-grid{
+.services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
 
-.service-card{
+.service-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: var(--color-dark-secondary);
     padding: 30px;
     border-radius: 15px;
@@ -323,40 +381,109 @@ img {
 .service-card p {
     color: var(--color-gray-light);
 }
-/*About Section*/
-.about {
-    padding: 100px 0;
-    background: var(--color-gray-gradient);
-    color: var(--color-light);
+
+/* Ícone de navalha */
+.service-icon .icon-razor {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: currentColor; /* matches var(--color-primary) via inheritance */
+    -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/2821/2821012.png') no-repeat center / contain;
+    mask: url('https://cdn-icons-png.flaticon.com/512/2821/2821012.png') no-repeat center / contain;
 }
+
+/*====================
+ * 6. SEÇÃO SOBRE
+ *====================*/
+
+.about {
+    padding: 120px 0;
+    background: linear-gradient(135deg, var(--color-dark-tertiary), var(--color-dark), var(--color-dark-secondary));
+    color: var(--color-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    opacity: 0.8;
+}
+
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 70px;
     align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.about-text {
+    padding: 20px;
+    border-left: 3px solid var(--primary-color);
 }
 
 .about-text p {
-    margin-bottom: 20px;
-    color: #cccccccc;
+    margin-bottom: 25px;
+    color: var(--color-light-off);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.about-image {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .about-image img {
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: var(--shadow-gold);
+    transition: all 0.5s ease;
+    transform: scale(1);
+    border: 3px solid transparent;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-height: 450px;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
 }
 
 .about .section-title {
     color: var(--color-light);
     text-align: left;
+    margin-bottom: 30px;
+    font-size: 2.8rem;
+    letter-spacing: 1px;
 }
 
 .about .section-title::after {
-    left:0;
+    left: 0;
     transform: none;
+    height: 4px;
+    width: 100px;
+    background: var(--gold-gradient);
 }
 
-/* Testimonials Section */
+/*====================
+ * 7. SEÇÃO DEPOIMENTOS
+ *====================*/
+
 .testimonials {
     padding: 100px 0;
     background-color: var(--color-dark-secondary);
@@ -369,7 +496,7 @@ img {
 }
 
 .testimonials-card {
-    background-color: var(--color-dark);
+    background-color: var(--color-dark-tertiary);
     padding: 30px;
     border-radius: 10px;
     box-shadow: var(--shadow-dark);
@@ -406,25 +533,32 @@ img {
     margin-bottom: 20px;
 }
 
-button{
-    border: none;
-    border-radius: 5px;
-    transition: var(--transition);
+.btn-avaliation {
+    display: flex;
+    padding: 6px 12px;
     background-color: var(--primary-color);
     color: var(--color-dark);
-    padding: 10px 20px;
-    font-weight: 600;
-    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: var(--shadow-gold);
+    border: 0.5px solid var(--primary-color);
+    align-items: center ;
+    justify-content: center;
 }
 
-button:hover{
-    transform: translateY(-2px);
-    background-color: var(--color-dark);
+.btn-avaliation:hover {
+    background-color: var(--color-gray-dark);
     color: var(--primary-color);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+    
 }
 
-/*booking section*/
+/*====================
+ * 8. SEÇÃO AGENDAMENTO
+ *====================*/
+
 .booking {
     padding: 100px 0;
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('./assets/booking.jpg') no-repeat center/cover;
@@ -447,7 +581,9 @@ button:hover{
     text-align: center;
 }
 
-/*footer*/
+/*====================
+ * 9. FOOTER
+ *====================*/
 
 .footer {
     background-color: var(--color-dark);
@@ -455,6 +591,7 @@ button:hover{
     padding: 70px 0 20px;
     position: relative;
 }
+
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -510,7 +647,10 @@ button:hover{
     font-size: 0.9rem;
 }
 
-/* Animations */
+/*====================
+ * 10. ANIMAÇÕES
+ *====================*/
+
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -520,8 +660,8 @@ button:hover{
         opacity: 1;
         transform: translateY(0);
     }
-
 }
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -533,7 +673,11 @@ button:hover{
     }
 }
 
-/* Responsive Styles*/
+/*====================
+ * 11. RESPONSIVIDADE
+ *====================*/
+
+/* Telas grandes e médias */
 @media screen and (max-width: 992px) {
     .footer-content {
         grid-template-columns: 1fr;
@@ -542,11 +686,30 @@ button:hover{
     .social-icons {
         justify-content: center;
     }
+    
+    /* Melhorias na responsividade da seção About */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
     .about-image {
         order: -1;
+        max-width: 80%;
+        margin: 0 auto;
+        height: 350px;
+    }
+    .about-image img {
+        max-height: 350px;
+    }
+    .about-text {
+        padding: 20px 10px 20px 20px;
+        text-align: center;
+        border-left: none;
+        border-bottom: 3px solid var(--primary-color);
     }
     .about .section-title {
         text-align: center;
+        margin-bottom: 25px;
     }
     .about .section-title::after {
         left: 50%;
@@ -554,6 +717,7 @@ button:hover{
     }
 }
 
+/* Tablets e dispositivos móveis grandes */
 @media screen and (max-width: 768px) {
     .header-cta {
         display: none;
@@ -565,6 +729,30 @@ button:hover{
         flex-direction: row;
         justify-content: space-between;
     }
+    
+    /* Melhorias na responsividade da seção About */
+    .about {
+        padding: 80px 0;
+    }
+    .about-content {
+        gap: 30px;
+    }
+    .about-image {
+        height: 300px;
+        max-width: 90%;
+    }
+    .about-image img {
+        max-height: 300px;
+        border-radius: 10px;
+    }
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    .about .section-title {
+        font-size: 2.2rem;
+    }
+    
     .nav {
         position: fixed;
         top: 0;
@@ -604,6 +792,7 @@ button:hover{
     }
 }
 
+/* Dispositivos móveis pequenos */
 @media screen and (max-width: 576px) {
     .section-title {
         font-size: 2rem;
@@ -617,14 +806,32 @@ button:hover{
     .services-grid, .testimonials-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/*Flaticon Razor icon mask*/
-.service-icon .icon-razor {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-color: currentColor; /* matches var(--color-primary) via inheritance */
-    -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/2821/2821012.png') no-repeat center / contain;
-    mask: url('https://cdn-icons-png.flaticon.com/512/2821/2821012.png') no-repeat center / contain;
+    
+    /* Melhorias na responsividade da seção About para dispositivos pequenos */
+    .about {
+        padding: 60px 0;
+    }
+    .about-image {
+        max-width: 100%;
+        height: 250px;
+    }
+    .about-image img {
+        max-height: 250px;
+        border-radius: 8px;
+    }
+    .about-text {
+        padding: 15px 5px 15px 15px;
+    }
+    .about-text p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+    .about .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    .about .section-title::after {
+        width: 70px;
+        height: 3px;
+    }
 }
