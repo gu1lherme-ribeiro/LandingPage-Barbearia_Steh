@@ -48,7 +48,7 @@ body {
     font-weight: 400;
     color: var(--color-dark);
     line-height: 1.6;
-    background-color: var(--color-light);
+    background-color: var(--color-dark);
 }
 
 a {
@@ -511,7 +511,7 @@ button:hover {
 .about {
     padding: 120px 0;
     background: linear-gradient(135deg, var(--color-gray-dark), var(--color-dark-secondary), var(--color-dark-tertiary));
-    color: var(--color-light);
+    color: var(--color-dark);
     position: relative;
     overflow: hidden;
 }
