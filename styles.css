@@ -532,7 +532,7 @@ button:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 70px;
-    align-items: center;
+    align-items: start;
     position: relative;
     z-index: 1;
 }
@@ -555,8 +555,9 @@ button:hover {
     overflow: hidden;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 0;
 }
 
 .about-image img {
@@ -598,74 +599,165 @@ button:hover {
  *====================*/
 
 .testimonials {
-    padding: 100px 0;
-    background: linear-gradient(336deg, var(--color-dark), var(--color-gray-dark), var(--color-gray));
+    padding: 120px 0;
+    background: linear-gradient(135deg, var(--color-dark), var(--color-gray-dark), var(--color-dark-secondary));
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials .container {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials .section-title {
+    color: var(--primary-color-dark);
+    text-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+    margin-bottom: 60px;
 }
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    margin-top: 40px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .testimonials-card {
-    background-color: var(--color-dark-tertiary);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-dark);
+    background: linear-gradient(145deg, var(--color-dark-secondary), var(--color-dark-tertiary));
+    padding: 35px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     height: 100%;
     min-height: 300px;
-    transition: var(--transition);
-    border: 1px solid rgba(212, 175, 55, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.testimonials-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gold-gradient);
+    transform: scaleX(0);
+    transition: transform 0.6s ease;
+    transform-origin: left;
 }
 
 .testimonials-card:hover {
-    transform: translateY(-2px);
-    transition-delay: 0.1s;
-    box-shadow: var(--shadow-gold);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(145deg, var(--color-dark-tertiary), var(--color-dark));
+}
+
+.testimonials-card:hover::before {
+    transform: scaleX(1);
 }
 
 .testimonial-rating {
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 5px;
+    font-size: 1.2rem;
+}
+
+.testimonial-rating i {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+}
+
+.testimonials-card:hover .testimonial-rating i {
+    transform: scale(1.1);
+    color: var(--primary-color-light);
 }
 
 .testimonials-text {
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     color: var(--color-gray-light);
     flex-grow: 1;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .testimonial-author {
-    font-weight: 550;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-author::before {
+    content: '—';
+    margin-right: 8px;
+    color: var(--primary-color-dark);
 }
 
 .btn-avaliation {
     display: flex;
-    padding: 6px 12px;
-    background-color: var(--primary-color);
+    padding: 12px 20px;
+    background: var(--gold-gradient);
     color: var(--color-dark);
-    border-radius: 25px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: var(--transition);
-    box-shadow: var(--shadow-gold);
-    border: 0.5px solid var(--primary-color);
-    align-items: center ;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    border: 2px solid transparent;
+    align-items: center;
     justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.btn-avaliation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-avaliation:hover::before {
+    left: 100%;
 }
 
 .btn-avaliation:hover {
-    background-color: var(--color-gray-dark);
+    background: transparent;
     color: var(--primary-color);
-    transform: translateY(-2px);
-    
+    border: 2px solid var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+.btn-avaliation i {
+    margin-left: 8px;
+    font-size: 0.9rem;
 }
 
 /*====================
@@ -772,6 +864,7 @@ button:hover {
  * 10. ANIMAÇÕES
  *====================*/
 
+/* Animações para os cards de avaliação */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -794,6 +887,44 @@ button:hover {
     }
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Aplicando animações aos cards */
+.testimonials-card:nth-child(1) {
+    animation: slideInLeft 0.8s ease 0.2s;
+    animation-fill-mode: both;
+}
+
+.testimonials-card:nth-child(2) {
+    animation: fadeInUp 0.8s ease 0.4s;
+    animation-fill-mode: both;
+}
+
+.testimonials-card:nth-child(3) {
+    animation: slideInRight 0.8s ease 0.6s;
+    animation-fill-mode: both;
+}
+
 /*====================
  * 11. RESPONSIVIDADE
  *====================*/
@@ -812,12 +943,15 @@ button:hover {
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        align-items: start;
     }
     .about-image {
         order: -1;
         max-width: 80%;
         margin: 0 auto;
         height: auto;
+        align-items: center;
+        justify-content: center;
     }
     .about-image img {
         max-height: 300px;
@@ -836,6 +970,20 @@ button:hover {
     .about .section-title::after {
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    /* Responsividade da seção de avaliações */
+    .testimonials {
+        padding: 80px 0;
+    }
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 800px;
+    }
+    .testimonials-card {
+        min-height: 280px;
+        padding: 30px 25px;
     }
 }
 
@@ -867,10 +1015,13 @@ button:hover {
     }
     .about-content {
         gap: 30px;
+        align-items: start;
     }
     .about-image {
         height: 300px;
         max-width: 90%;
+        align-items: center;
+        justify-content: center;
     }
     .about-image img {
         max-height: 300px;
@@ -882,6 +1033,29 @@ button:hover {
     }
     .about .section-title {
         font-size: 2.2rem;
+    }
+    
+    /* Responsividade da seção de avaliações para tablets */
+    .testimonials {
+        padding: 70px 0;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .testimonials-card {
+        min-height: 250px;
+        padding: 25px 20px;
+    }
+    .testimonials-text {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    .btn-avaliation {
+        padding: 10px 16px;
+        font-size: 0.9rem;
     }
     
     .nav {
@@ -945,6 +1119,8 @@ button:hover {
     .about-image {
         max-width: 100%;
         height: auto;
+        align-items: center;
+        justify-content: center;
     }
     .about-image img {
         max-height: 250px;
