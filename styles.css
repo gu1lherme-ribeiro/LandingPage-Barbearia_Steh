@@ -17,8 +17,9 @@
     --color-gray-light: #999999;
     --color-gray-dark: #1c1c1c;
     --color-gray-gradient: linear-gradient(to bottom, #121212, #000000);
-    --font-primary: 'Montserrat', sans-serif;
-    --font-titles: 'Montserrat', sans-serif;
+    --font-primary: 'Poppins', sans-serif;
+    --font-titles: 'Cinzel', serif;
+    --font-logo: 'Montserrat', sans-serif;
     --transition: all 0.3s ease;
     --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.4);
     --shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.7);
@@ -41,6 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     color: var(--color-dark);
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 body {
