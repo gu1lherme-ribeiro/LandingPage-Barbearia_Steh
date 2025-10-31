@@ -1076,6 +1076,12 @@ button:hover {
     background-attachment: fixed;
 }
 
+@media screen and (max-width: 768px) {
+    .booking {
+        background-attachment: scroll;
+    }
+}
+
 .booking-content {
     max-width: 700px;
     margin: 0 auto;
