@@ -12,21 +12,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
   </head>
   <body>
-    <div id="scroll-progress"></div>
+    <div id="scroll-progress" style="width: 0%"></div>
+    <div class="menu-overlay"></div>
     <header class="header">
       <div class="container">
         <div class="logo"><img src="./assets/img/logo.png" alt="Logo Barbearia Steh"></div>
         <nav class="nav">
+          <div class="close-menu-btn" aria-label="Fechar menu">
+            <i class="fas fa-times"></i>
+          </div>
+          <h2 class="nav-title">MENU PRINCIPAL</h2>
           <ul class="nav-list">
-            <li><a href="#inicio">Ínicio</a></li>
+            <li><a href="#inicio">Início</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#serviços">Serviços</a></li>
             <li><a href="#contato">Contato</a></li>
           </ul>
         </nav>
-        <div class="mobile-menu-btn">
+        <div class="mobile-menu-btn" aria-expanded="false" aria-label="Abrir menu">
           <i class="fas fa-bars"></i>
         </div>
       </div>
@@ -99,16 +105,16 @@
           <div class="about-text">
             <h2 class="section-title" id="title-about">Sobre Nós</h2>
             <p>
-              "A Barbearia Steh é uma instituição comprometida com a
+              A Barbearia Steh é uma instituição comprometida com a
               excelência na barbearia. Fundada em 2019, nossa barbearia tem
               como objetivo proporcionar um ambiente acolhedor e profissionais
-              qualificados para atender às necessidades de nossos clientes."
+              qualificados para atender às necessidades de nossos clientes.
             </p>
             <p>
-              "Nosso espaço foi pensado para que você se sinta em casa, com
+              Nosso espaço foi pensado para que você se sinta em casa, com
               um ambiente acolhedor e profissionais altamente qualificados.
               Aqui, cada cliente recebe um atendimento personalizado,
-              respeitando seu estilo e personalidade."
+              respeitando seu estilo e personalidade.
             </p>
           </div>
           <div class="about-image">
