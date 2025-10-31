@@ -219,13 +219,15 @@ img {
     letter-spacing: 2px;
     padding: 8px 15px;
     display: block;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     color: var(--primary-color);
     position: relative;
+    text-align: center;
+    width: 100%;
   }
 
   .nav-list a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color-light);
     transform: translateX(5px);
   }
 
@@ -237,7 +239,7 @@ img {
     width: 0;
     height: 2px;
     background: var(--gold-gradient);
-    transition: all 0.4s ease;
+    transition: width 0.4s ease;
     transform: translateX(-50%);
   }
 
