@@ -114,7 +114,7 @@ img {
   .nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 85vw;
     height: 100vh;
     background: linear-gradient(
@@ -122,7 +122,6 @@ img {
       var(--color-dark-tertiary),
       var(--color-dark)
     );
-    transition: transform 0.3s ease-out;
     transform: translateX(100%);
     z-index: 1001;
     box-shadow: -8px 0 25px rgba(0, 0, 0, 0.7);
@@ -133,10 +132,12 @@ img {
     padding-top: 30px;
     border-left: 1px solid rgba(212, 175, 55, 0.2);
     will-change: transform;
+    transition: transform 0.3s ease;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .nav.active {
-    right: 0;
     transform: translateX(0);
   }
 
@@ -153,12 +154,17 @@ img {
     padding-bottom: 18px;
     text-align: center;
     width: 90%;
-    transition: transform 0.2s ease-out;
+    transform: translateZ(0);
+    transition: transform 0.2s ease;
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .nav-list li:hover {
     transform: translateX(5px);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .nav-list li:last-child {
@@ -219,11 +225,14 @@ img {
     letter-spacing: 2px;
     padding: 8px 15px;
     display: block;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transform: translateZ(0);
+    transition: color 0.3s ease, transform 0.3s ease;
     color: var(--primary-color);
     position: relative;
     text-align: center;
     width: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .nav-list a:hover {
@@ -1636,12 +1645,15 @@ button:hover {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
   will-change: opacity, visibility;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .menu-overlay.active {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
 }
 }

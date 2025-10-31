@@ -9,9 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-list a");
   const menuOverlay = document.querySelector(".menu-overlay");
 
+  // Função para fechar o menu mobile
+  function closeMenu() {
+    requestAnimationFrame(() => {
+      nav.classList.remove("active");
+      menuOverlay.classList.remove("active");
+      mobileMenuBtn.classList.remove("active");
+      mobileMenuBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = ""; // Restaura rolagem
+    });
+  }
+
   // Função para abrir o menu mobile
   mobileMenuBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    e.stopPropagation();
     requestAnimationFrame(() => {
       nav.classList.add("active");
       menuOverlay.classList.add("active");
@@ -21,51 +33,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Função para fechar o menu mobile
+  // Fechar o menu ao clicar no botão de fechar
   closeMenuBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    requestAnimationFrame(() => {
-      nav.classList.remove("active");
-      menuOverlay.classList.remove("active");
-      mobileMenuBtn.classList.remove("active");
-      mobileMenuBtn.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = ""; // Restaura rolagem
-    });
+    e.stopPropagation();
+    closeMenu();
   });
 
   // Fechar o menu ao clicar em um link
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      requestAnimationFrame(() => {
-        nav.classList.remove("active");
-        menuOverlay.classList.remove("active");
-        mobileMenuBtn.classList.remove("active");
-        mobileMenuBtn.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = ""; // Restaura rolagem
-      });
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+        
+        // Primeiro fecha o menu
+        closeMenu();
+        
+        // Depois navega para a seção após um pequeno delay
+        setTimeout(() => {
+          const targetSection = document.querySelector(href);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 300);
+      }
     });
   });
 
   // Fechar o menu ao clicar no overlay
   menuOverlay.addEventListener("click", (e) => {
     e.preventDefault();
-    requestAnimationFrame(() => {
-      nav.classList.remove("active");
-      menuOverlay.classList.remove("active");
-      mobileMenuBtn.classList.remove("active");
-      mobileMenuBtn.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = ""; // Restaura rolagem
-    });
+    e.stopPropagation();
+    closeMenu();
   });
 
   // Fecha o menu ao pressionar ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("active")) {
-      nav.classList.remove("active");
-      menuOverlay.classList.remove("active");
-      mobileMenuBtn.classList.remove("active");
-      mobileMenuBtn.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
+      closeMenu();
     }
   });
 
