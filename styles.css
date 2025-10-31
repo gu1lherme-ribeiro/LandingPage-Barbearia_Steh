@@ -340,7 +340,7 @@ img {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color-dark), var(--primary-color));
     color: var(--color-dark);
-    border: 2px solid var(--primary-color-dark);
+    border: 1px solid var(--primary-color-dark);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
@@ -1300,9 +1300,22 @@ button:hover {
     }
     
     .footer-info p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin: 0 0 15px;
         display: block;
-        margin: 0 auto 15px;
-        
+    }
+    .footer-info h3, .footer-social h3 {
+        font-size: 1.3rem;
+    }
+    .footer-bottom {
+        font-size: 0.85rem;
+    }
+    .footer-social {
+        text-align: center;
+    }
+    .social-icons {
+        justify-content: center;
     }
     .header-cta {
         display: none;
@@ -1345,15 +1358,19 @@ button:hover {
     .testimonials {
         padding: 70px 0;
     }
+    .testimonials .container {
+        padding: 0 25px;
+    }
     .testimonials-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 30px;
         max-width: 500px;
         margin: 0 auto;
     }
     .testimonials-card {
         min-height: 250px;
-        padding: 25px 20px;
+        padding: 30px 25px;
+        margin: 0 10px;
     }
     .testimonials-text {
         font-size: 1rem;
@@ -1456,6 +1473,23 @@ button:hover {
     .about .section-title::after {
         width: 70px;
         height: 3px;
+    }
+    
+    /* Melhorias na responsividade da seção de avaliações para dispositivos pequenos */
+    .testimonials {
+        padding: 60px 0;
+    }
+    .testimonials .container {
+        padding: 0 20px;
+    }
+    .testimonials-grid {
+        max-width: 90%;
+        gap: 35px;
+    }
+    .testimonials-card {
+        padding: 25px 20px;
+        margin: 0 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 }
 
