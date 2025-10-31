@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-list a");
   const menuOverlay = document.querySelector(".menu-overlay");
 
+  // Pré-carregamento para evitar flick
+  document.querySelectorAll('.nav-list a').forEach(link => {
+    link.style.willChange = 'transform, color';
+    link.style.transform = 'translateZ(0)';
+  });
+
   // Função para fechar o menu mobile
   function closeMenu() {
     requestAnimationFrame(() => {
@@ -50,13 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // Primeiro fecha o menu
         closeMenu();
         
-        // Depois navega para a seção após um pequeno delay
+        // Depois navega para a seção com animação otimizada
         setTimeout(() => {
           const targetSection = document.querySelector(href);
           if (targetSection) {
-            targetSection.scrollIntoView({ behavior: "smooth" });
+            // Usar scrollTo com easing para melhor performance
+            const offsetTop = targetSection.offsetTop;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: "smooth"
+            });
           }
-        }, 300);
+        }, 200); // Reduzindo o delay para melhorar a fluidez
       }
     });
   });
