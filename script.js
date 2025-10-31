@@ -8,76 +8,80 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav");
   const navLinks = document.querySelectorAll(".nav-list a");
   const menuOverlay = document.querySelector(".menu-overlay");
+  const header = document.querySelector(".header");
 
-  // Pré-carregamento para evitar flick
-  document.querySelectorAll('.nav-list a').forEach(link => {
-    link.style.willChange = 'transform, color';
-    link.style.transform = 'translateZ(0)';
-  });
-
-  // Função para fechar o menu mobile
+  // Função para fechar o menu mobile - otimizada
   function closeMenu() {
-    requestAnimationFrame(() => {
-      nav.classList.remove("active");
-      menuOverlay.classList.remove("active");
-      mobileMenuBtn.classList.remove("active");
-      mobileMenuBtn.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = ""; // Restaura rolagem
-    });
+    // Aplicar classes sem manipulação de estilo direta
+    nav.classList.remove("active");
+    menuOverlay.classList.remove("active");
+    mobileMenuBtn.classList.remove("active");
+    mobileMenuBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = ""; // Restaura rolagem
   }
 
-  // Função para abrir o menu mobile
+  // Função para abrir o menu mobile - otimizada
   mobileMenuBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    requestAnimationFrame(() => {
-      nav.classList.add("active");
-      menuOverlay.classList.add("active");
-      mobileMenuBtn.classList.add("active");
-      mobileMenuBtn.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden"; // Impede rolagem quando menu está aberto
-    });
+    // Aplicar classes sem manipulação de estilo direta
+    nav.classList.add("active");
+    menuOverlay.classList.add("active");
+    mobileMenuBtn.classList.add("active");
+    mobileMenuBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden"; // Impede rolagem quando menu está aberto
   });
 
   // Fechar o menu ao clicar no botão de fechar
   closeMenuBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation();
     closeMenu();
   });
 
-  // Fechar o menu ao clicar em um link
+  // Cache para elementos de seção - otimizado
+  const sectionCache = {};
+
+  // Função otimizada para scroll suave com performance melhorada
+  function smoothScroll(targetId) {
+    // Usar cache para evitar repetidas consultas ao DOM
+    if (!sectionCache[targetId]) {
+      sectionCache[targetId] = document.querySelector(targetId);
+    }
+
+    const targetSection = sectionCache[targetId];
+    if (!targetSection) return;
+
+    const headerHeight = header.offsetHeight;
+    const offsetTop =
+      targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+    // Usar scrollTo com easing nativo
+    window.scrollTo({
+      top: offsetTop,
+      behavior: "smooth",
+    });
+  }
+
+  // Fechar o menu ao clicar em um link - otimizado para navegação mais fluida
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       if (window.innerWidth <= 768) {
         e.preventDefault();
         const href = link.getAttribute("href");
-        
+
         // Primeiro fecha o menu
         closeMenu();
-        
-        // Depois navega para a seção com animação otimizada
+
+        // Pequeno timeout para permitir que a animação do menu termine primeiro
+        // Reduzido para melhorar a responsividade
         setTimeout(() => {
-          const targetSection = document.querySelector(href);
-          if (targetSection) {
-            // Usar scrollTo com easing para melhor performance
-            const offsetTop = targetSection.offsetTop;
-            window.scrollTo({
-              top: offsetTop,
-              behavior: "smooth"
-            });
-          }
-        }, 200); // Reduzindo o delay para melhorar a fluidez
+          smoothScroll(href);
+        }, 50);
       }
     });
   });
 
   // Fechar o menu ao clicar no overlay
-  menuOverlay.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    closeMenu();
-  });
+  menuOverlay.addEventListener("click", closeMenu);
 
   // Fecha o menu ao pressionar ESC
   document.addEventListener("keydown", (e) => {
@@ -90,35 +94,63 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. SCROLL PROGRESS BAR
   // ======================================
   const scrollProgress = document.getElementById("scroll-progress");
+  let ticking = false;
 
-  // Atualiza a barra de progresso conforme o scroll da página
+  // Função throttle para limitar a frequência de execução
+  function throttle(callback, limit) {
+    let waiting = false;
+    return function () {
+      if (!waiting) {
+        callback.apply(this, arguments);
+        waiting = true;
+        setTimeout(() => {
+          waiting = false;
+        }, limit);
+      }
+    };
+  }
+
+  // Atualiza a barra de progresso conforme o scroll da página - otimizada
   function updateScrollProgress() {
-    const windowScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
+    const windowScroll = window.scrollY || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = (windowScroll / height) * 100;
 
     if (scrollProgress) {
-      scrollProgress.style.width = scrolled + "%";
+      // Usar requestAnimationFrame para otimizar a performance
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          scrollProgress.style.width = scrolled + "%";
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
   }
 
-  // Adiciona evento de scroll para atualizar a barra de progresso
-  window.addEventListener("scroll", updateScrollProgress);
+  // Adiciona evento de scroll com throttle para melhor performance
+  window.addEventListener("scroll", throttle(updateScrollProgress, 16)); // ~60fps
 
   // ======================================
   // 3. SCROLL SUAVE ENTRE SEÇÕES
   // ======================================
+  // Cache para elementos de âncora
+  const anchorCache = {};
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
 
       const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
 
+      // Usar cache para evitar repetidas consultas ao DOM
+      if (!anchorCache[targetId]) {
+        anchorCache[targetId] = document.querySelector(targetId);
+      }
+
+      const targetElement = anchorCache[targetId];
       if (targetElement) {
+        // Usar scrollTo com easing nativo
         window.scrollTo({
           top: targetElement.offsetTop - 80, // Ajuste para compensar o header fixo
           behavior: "smooth",
@@ -130,12 +162,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================================
   // 4. HEADER FIXO DINÂMICO
   // ======================================
-  const header = document.querySelector(".header");
-
+  // Usar throttle para melhorar a performance
   function toggleHeaderClass() {
     if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
+      if (!header.classList.contains("scrolled")) {
+        header.classList.add("scrolled");
+      }
+    } else if (header.classList.contains("scrolled")) {
       header.classList.remove("scrolled");
     }
   }
@@ -143,8 +176,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Verifica o scroll inicial
   toggleHeaderClass();
 
-  // Adiciona evento de scroll para atualizar a classe do header
-  window.addEventListener("scroll", toggleHeaderClass);
+  // Adiciona evento de scroll com throttle para melhor performance
+  window.addEventListener("scroll", throttle(toggleHeaderClass, 100));
 
   // ======================================
   // 5. ANIMAÇÕES ON SCROLL
@@ -164,8 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        // Opcional: parar de observar após animar
-        // animationObserver.unobserve(entry.target);
+        // Parar de observar após animar para melhorar performance
+        animationObserver.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -185,17 +218,19 @@ document.addEventListener("DOMContentLoaded", () => {
   backToTopButton.setAttribute("aria-label", "Voltar ao topo");
   document.body.appendChild(backToTopButton);
 
-  // Função para mostrar/ocultar o botão baseado na posição do scroll
+  // Função para mostrar/ocultar o botão baseado na posição do scroll - otimizada
   function toggleBackToTopButton() {
     if (window.scrollY > 300) {
-      backToTopButton.classList.add("visible");
-    } else {
+      if (!backToTopButton.classList.contains("visible")) {
+        backToTopButton.classList.add("visible");
+      }
+    } else if (backToTopButton.classList.contains("visible")) {
       backToTopButton.classList.remove("visible");
     }
   }
 
-  // Adiciona evento de scroll para mostrar/ocultar o botão
-  window.addEventListener("scroll", toggleBackToTopButton);
+  // Adiciona evento de scroll com throttle para melhor performance
+  window.addEventListener("scroll", throttle(toggleBackToTopButton, 100));
 
   // Adiciona evento de clique para voltar ao topo
   backToTopButton.addEventListener("click", () => {
@@ -205,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Inicializa todas as funções
+  // Inicializa todas as funções - apenas as necessárias no carregamento
   updateScrollProgress();
   toggleHeaderClass();
   toggleBackToTopButton();
