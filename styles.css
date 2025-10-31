@@ -699,7 +699,7 @@ button:hover {
 .hero {
   height: 100vh;
   background: linear-gradient(var(--color-dark), rgba(0, 0, 0, 0.7)),
-    url("./assets/img/Hero.jpg") no-repeat center/cover;
+    url("assets/img/Hero.jpg") no-repeat center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1269,8 +1269,8 @@ button:hover {
 
 .booking {
   padding: 100px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("./assets/img/booking.jpg") no-repeat center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("assets/img/booking.jpg") no-repeat center/cover;
   background-attachment: fixed;
 }
 
