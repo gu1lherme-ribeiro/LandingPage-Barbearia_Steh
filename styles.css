@@ -147,7 +147,6 @@ img {
 
   .nav-list li {
     margin: 18px 0;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     padding-bottom: 18px;
     text-align: center;
     width: 90%;
@@ -156,7 +155,6 @@ img {
 
   .nav-list li:hover {
     transform: translateX(5px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.6);
   }
 
   .nav-list li:last-child {
@@ -218,7 +216,7 @@ img {
     padding: 8px 15px;
     display: block;
     transition: all 0.3s ease;
-    color: var(--color-light);
+    color: var(--primary-color);
     position: relative;
   }
 
