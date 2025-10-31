@@ -10,26 +10,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuOverlay = document.querySelector(".menu-overlay");
 
   // Função para abrir o menu mobile
-  mobileMenuBtn.addEventListener("click", () => {
-    nav.classList.add("active");
-    menuOverlay.classList.add("active");
-    mobileMenuBtn.classList.add("active");
-    mobileMenuBtn.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden"; // Impede rolagem quando menu está aberto
+  mobileMenuBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    requestAnimationFrame(() => {
+      nav.classList.add("active");
+      menuOverlay.classList.add("active");
+      mobileMenuBtn.classList.add("active");
+      mobileMenuBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden"; // Impede rolagem quando menu está aberto
+    });
   });
 
   // Função para fechar o menu mobile
-  closeMenuBtn.addEventListener("click", () => {
-    nav.classList.remove("active");
-    menuOverlay.classList.remove("active");
-    mobileMenuBtn.classList.remove("active");
-    mobileMenuBtn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = ""; // Restaura rolagem
-  });
-
-  // Fechar o menu ao clicar em um link
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+  closeMenuBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    requestAnimationFrame(() => {
       nav.classList.remove("active");
       menuOverlay.classList.remove("active");
       mobileMenuBtn.classList.remove("active");
@@ -38,13 +33,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Fechar o menu ao clicar em um link
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      requestAnimationFrame(() => {
+        nav.classList.remove("active");
+        menuOverlay.classList.remove("active");
+        mobileMenuBtn.classList.remove("active");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = ""; // Restaura rolagem
+      });
+    });
+  });
+
   // Fechar o menu ao clicar no overlay
-  menuOverlay.addEventListener("click", () => {
-    nav.classList.remove("active");
-    menuOverlay.classList.remove("active");
-    mobileMenuBtn.classList.remove("active");
-    mobileMenuBtn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = ""; // Restaura rolagem
+  menuOverlay.addEventListener("click", (e) => {
+    e.preventDefault();
+    requestAnimationFrame(() => {
+      nav.classList.remove("active");
+      menuOverlay.classList.remove("active");
+      mobileMenuBtn.classList.remove("active");
+      mobileMenuBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = ""; // Restaura rolagem
+    });
   });
 
   // Fecha o menu ao pressionar ESC
