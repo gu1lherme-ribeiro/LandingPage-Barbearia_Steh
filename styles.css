@@ -261,9 +261,7 @@ img {
     right: 0;
     width: 85vw;
     height: 100vh;
-    background: linear-gradient(145deg,
-        var(--color-dark-tertiary),
-        var(--color-dark));
+    background-color: var(--color-dark);
     transform: translateX(100%);
     z-index: 1001;
     box-shadow: -8px 0 25px rgba(0, 0, 0, 0.7);
