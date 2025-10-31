@@ -1,5 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ======================================
+  // 0. EFEITO DE ABERTURA DO SITE
+  // ======================================
+  const splashScreen = document.getElementById("splash-screen");
+  const body = document.body;
+  
+  // Detecta se o dispositivo é móvel
+  const isMobile = window.innerWidth <= 768;
+  
+  // Pré-carrega os elementos principais para evitar "pulos"
+  function preloadElements() {
+    const sections = document.querySelectorAll(".header, .hero, .services, .about, .testimonials, .booking, .contact, .footer");
+    sections.forEach(section => {
+      if (section) {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(0)"; // Mantém na posição correta, apenas invisível
+        section.style.willChange = "opacity, transform";
+      }
+    });
+  }
+  
+  // Executa o pré-carregamento
+  preloadElements();
+  
+  // Impede a rolagem durante o carregamento
+  body.style.overflow = "hidden";
+  
+  // Função para esconder a tela de splash com animação
+  function hideSplashScreen() {
+    splashScreen.classList.add("splash-hidden");
+    
+    // Habilita a rolagem após a animação
+    setTimeout(() => {
+      body.style.overflow = "";
+      
+      // Adiciona animação de entrada para os elementos da página de forma mais suave
+      // Prioriza elementos visíveis na primeira dobra
+      const sections = [
+        document.querySelector(".header"),
+        document.querySelector(".hero"),
+        ...document.querySelectorAll(".services, .about, .testimonials, .booking, .contact, .footer")
+      ].filter(Boolean);
+      
+      sections.forEach((section, index) => {
+        setTimeout(() => {
+          section.style.transition = `opacity ${isMobile ? '0.5s' : '0.8s'} ease`;
+          section.style.opacity = "1";
+        }, isMobile ? 30 * index : 50 * index); // Tempo reduzido em dispositivos móveis
+      });
+    }, isMobile ? 500 : 800); // Tempo reduzido em dispositivos móveis
+  }
+  
+  // Esconde a tela de splash após o carregamento (tempo reduzido em dispositivos móveis)
+  setTimeout(hideSplashScreen, isMobile ? 1800 : 2500);
+  
+  // ======================================
   // 1. MENU RESPONSIVO (MOBILE)
   // ======================================
   // Selecionando elementos do DOM
